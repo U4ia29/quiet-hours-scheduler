@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Quiet Hours Scheduler
+A full-stack web application for scheduling focused study blocks with automated email reminders. This project demonstrates a complete development lifecycle, from user authentication to backend API logic and CRON job automation.
 
-## Getting Started
+Core Features
+User Authentication: Secure sign-up and login via Supabase.
 
-First, run the development server:
+Schedule Management: Authenticated users can create and view their own time blocks.
 
-```bash
+Overlap Prevention: Backend logic prevents the creation of conflicting schedules.
+
+Automated Reminders: A CRON job sends an email reminder 10 minutes before a scheduled block begins.
+
+Tech Stack
+Framework: Next.js (App Router)
+
+Styling: Tailwind CSS
+
+Database: MongoDB Atlas
+
+Services: Supabase (Auth), SendGrid (Email)
+
+Deployment: Vercel
+
+Local Setup Guide
+1. Prerequisites
+You will need accounts for Supabase, MongoDB Atlas, and SendGrid.
+
+2. Installation
+Clone the repository and install dependencies.
+
+git clone https://github.com/your-username/quiet-hours-scheduler.git
+cd quiet-hours-scheduler
+npm install
+
+3. Environment Variables
+Create a .env file in the root directory and add the following keys from your service accounts:
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+
+# MongoDB
+MONGODB_URI=...
+
+# SendGrid
+SENDGRID_API_KEY=...
+FROM_EMAIL=...
+
+# CRON Protection
+CRON_SECRET=...
+
+4. Run the Project
+Start the development server.
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:3000. You can create a test user via the sign-up page to test the application.
