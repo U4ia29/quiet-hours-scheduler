@@ -2,7 +2,7 @@
 import { MongoClient } from "mongodb";
 
 declare global {
-  // @ts-ignore
+  // @ts-expect-error
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
