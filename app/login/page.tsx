@@ -54,9 +54,12 @@ export default function LoginPage() {
 </button>
         {message && <p className="text-center text-accent/80 mt-4">{message}</p>}
       </form>
-       <p className="text-center mt-4">
-        Don't have an account? <Link href="/signup" className="text-secondary hover:underline">Sign Up</Link>
-      </p>
+      <p className="text-center mt-4 text-sm text-foreground/80">
+  Don&apos;t have an account?
+  <Link href="/signup" className="font-semibold text-secondary hover:underline ml-1">
+    Sign Up
+  </Link>
+</p>
     </div>
   );
 }

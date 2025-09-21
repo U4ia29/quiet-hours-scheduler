@@ -8,7 +8,9 @@ if (!process.env.SENDGRID_API_KEY) {
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export async function sendEmail(to: string, schedules: any[]) {
+type Schedule = { start_time: string; end_time: string };
+
+export async function sendEmail(to: string, schedules: Schedule[]) {
   // Format the list of schedules for the email body
   const scheduleLines = schedules.map(s => {
     const startTime = new Date(s.start_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
