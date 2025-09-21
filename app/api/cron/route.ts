@@ -6,7 +6,11 @@ import clientPromise from '../../../lib/mongodb';
 import { sendEmail } from '../../../lib/email';
 import { ObjectId } from 'mongodb';
 
-
+ype Schedule = {
+  _id: string;
+  user_id: string;
+  // Add other properties from your schedule object here if needed
+};
 export async function GET(request: NextRequest) {
   // 1. Protect the route with a secret key
   const cronKey = request.headers.get('x-cron-key');
@@ -32,9 +36,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ ok: true, message: 'No schedules to process.' });
     }
 
-    // 3. Group the schedules by user_id
-    const schedulesByUser: { [userId: string]: any[] } = {};
-    for (const schedule of candidates) {
+const schedulesByUser: { [userId: string]: Schedule[] } = {};    for (const schedule of candidates) {
       if (!schedulesByUser[schedule.user_id]) {
         schedulesByUser[schedule.user_id] = [];
       }
