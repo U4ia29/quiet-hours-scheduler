@@ -6,7 +6,7 @@ import clientPromise from '../../../lib/mongodb';
 import { sendEmail } from '../../../lib/email';
 import { ObjectId } from 'mongodb';
 
-ype Schedule = {
+type Schedule = {
   _id: string;
   user_id: string;
   // Add other properties from your schedule object here if needed
