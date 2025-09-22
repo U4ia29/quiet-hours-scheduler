@@ -9,6 +9,9 @@ import { ObjectId } from 'mongodb';
 type Schedule = {
   _id: string;
   user_id: string;
+  start_time: string;
+  end_time: string;
+  user_email: string;
   // Add other properties from your schedule object here if needed
 };
 export async function GET(request: NextRequest) {
@@ -32,16 +35,27 @@ export async function GET(request: NextRequest) {
       start_time: { $gte: now, $lte: windowEnd }
     }).toArray();
 
-    if (candidates.length === 0) {
-      return NextResponse.json({ ok: true, message: 'No schedules to process.' });
-    }
+if (candidates.length === 0) {
+  return NextResponse.json({ ok: true, message: 'No schedules to process.' });
+}
 
-const schedulesByUser: { [userId: string]: Schedule[] } = {};    for (const schedule of candidates) {
-      if (!schedulesByUser[schedule.user_id]) {
-        schedulesByUser[schedule.user_id] = [];
-      }
-      schedulesByUser[schedule.user_id].push(schedule);
-    }
+// Group schedules by user
+const schedulesByUser: { [userId: string]: Schedule[] } = {};
+
+for (const candidate of candidates) {
+  const schedule: Schedule = {
+    _id: candidate._id.toString(),
+    user_id: candidate.user_id,
+    start_time: candidate.start_time instanceof Date ? candidate.start_time.toISOString() : candidate.start_time,
+    end_time: candidate.end_time instanceof Date ? candidate.end_time.toISOString() : candidate.end_time,
+    user_email: candidate.user_email,
+    // Add other properties from candidate if needed
+  };
+  if (!schedulesByUser[schedule.user_id]) {
+    schedulesByUser[schedule.user_id] = [];
+  }
+  schedulesByUser[schedule.user_id].push(schedule);
+}
 
     const results = [];
 
