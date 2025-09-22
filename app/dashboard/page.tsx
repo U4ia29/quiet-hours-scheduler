@@ -49,6 +49,8 @@ export default function DashboardPage() {
   }, [fetchSchedules]);
 
   const handleCreateSchedule = async (e: React.FormEvent) => {
+    console.log('UTC FIX DEPLOYED: Creating schedule with ISOString conversion.');
+
     e.preventDefault();
     setMessage('Creating schedule...');
 
