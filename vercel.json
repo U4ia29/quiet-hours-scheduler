@@ -2,7 +2,10 @@
   "crons": [
     {
       "path": "/api/cron",
-      "schedule": "*/5 * * * *"
+      "schedule": "*/5 * * * *",
+      "headers": {
+        "x-cron-key": "a-very-long-random-string"
+      }
     }
   ]
 }

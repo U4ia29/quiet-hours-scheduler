@@ -22,6 +22,7 @@ export default function DashboardPage() {
     setLoading(true);
     const { data: { session } } = await supabase.auth.getSession();
     const token = session?.access_token;
+    console.log("Supabase Token:", token);
     if (!token) {
       setLoading(false);
       return;
