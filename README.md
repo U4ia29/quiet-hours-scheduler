@@ -1,4 +1,7 @@
 Quiet Hours Scheduler
+
+Live Demo: [Visit the live project](https://quiet-hours-scheduler-lbe3g24vv-udita-bhosales-projects.vercel.app)
+
 A full-stack web application for scheduling focused study blocks with automated email reminders. This project demonstrates a complete development lifecycle, from user authentication to backend API logic and CRON job automation.
 
 Core Features
